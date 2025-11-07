@@ -49,7 +49,7 @@ public class LibraryController {
 
     //GET /api/libros/buscar?q={textoBusqueda}: Buscar libros cuyo título o autor contengan el texto proporcionado.
     @GetMapping("/search")
-    public List<Book> getBooksWithSubstring (@RequestParam("q") String text){
+    public List<Book> getBooksWithSubstring(@RequestParam("q") String text){
         return null;
     }
 
