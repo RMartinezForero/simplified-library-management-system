@@ -1,22 +1,24 @@
 package com.ricardo.simplified_library_management_system.model;
 
+import java.time.LocalDate;
+
 public class Book {
     private Long id;
     private String title;
     private String author;
     private String isbn;
-    private int publicationDate;
+    private LocalDate publicationDate;
     private String genre;
-    private Status status;
+    private BookStatus status;
 
-    public Book(Long id, String title, String author, String isbn, int publicationDate, String genre) {
+    public Book(Long id, String title, String author, String isbn, LocalDate publicationDate, String genre) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.isbn = isbn;
         this.publicationDate = publicationDate;
         this.genre = genre;
-        this.status = Status.AVAILABLE;
+        this.status = BookStatus.AVAILABLE;
     }
 
     public Long getId() {
@@ -51,11 +53,11 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public int getPublicationDate() {
+    public LocalDate getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(int publicationDate) {
+    public void setPublicationDate(LocalDate publicationDate) {
         this.publicationDate = publicationDate;
     }
 
@@ -67,11 +69,11 @@ public class Book {
         this.genre = genre;
     }
 
-    public Status getStatus() {
+    public BookStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(BookStatus status) {
         this.status = status;
     }
 
