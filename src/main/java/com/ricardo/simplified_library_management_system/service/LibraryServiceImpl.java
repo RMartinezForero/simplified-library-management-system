@@ -12,8 +12,8 @@ import com.ricardo.simplified_library_management_system.model.Book;
 
 @Service
 public class LibraryServiceImpl implements LibraryService {
-    // TODO: metodo con validacion de id en lugar de repetir codigo + isBlank() + validar curso ?
-    // TODO: AtomicLong para id?
+    // TODO: metodo con validacion de id en lugar de repetir codigo + isBlank() +
+    // validar curso ?
     // TODO: javadoc en entidades de software public
     private List<Book> books;
     private AtomicLong idGenerator;
@@ -44,7 +44,7 @@ public class LibraryServiceImpl implements LibraryService {
         if (newBook.getTitle().isBlank() || newBook.getAuthor() == null) {
             throw new IllegalArgumentException("Title is missing or blank.");
         }
-        
+
         newBook.setId(idGenerator.getAndIncrement());
         books.add(newBook);
     }
@@ -56,12 +56,11 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public Book getBookById(Long id) {
-        // TODO: validar AtomicLong
         if (id == null) {
             throw new IllegalArgumentException("Id is missing.");
         }
         if (id < 0) {
-            throw new IllegalArgumentException("Id most be positive.");
+            throw new IllegalArgumentException("Id most be a positive number.");
         }
 
         return books.stream()
@@ -84,6 +83,15 @@ public class LibraryServiceImpl implements LibraryService {
     public List<Book> getBooksWithSubstring(String text) {
         // TODO: validar a text
         return null;
+    }
+
+    private void idValidator(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("Id is missing.");
+        }
+        if (id < 0) {
+            throw new IllegalArgumentException("Id most be a positive number.");
+        }
     }
 
 }
