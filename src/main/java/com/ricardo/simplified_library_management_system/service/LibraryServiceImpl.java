@@ -25,23 +25,22 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public void addBook(Book newBook) {
-        // TODO: validar correctamente para ID basado en AtomicLong
         if (newBook == null) {
             throw new IllegalArgumentException("The Book object cannot be null.");
         }
-        if (newBook.getAuthor().isBlank() || newBook.getAuthor() == null) {
+        if (isBlank(newBook.getAuthor())) {
             throw new IllegalArgumentException("Author's name is missing or blank.");
         }
-        if (newBook.getGenre().isBlank() || newBook.getGenre() == null) {
+        if (isBlank(newBook.getGenre())) {
             throw new IllegalArgumentException("Genra data is missing or blank.");
         }
-        if (newBook.getIsbn().isBlank() || newBook.getIsbn() == null) {
+        if (isBlank(newBook.getIsbn())) {
             throw new IllegalArgumentException("ISBN data is missing or blank.");
         }
         if (newBook.getPublicationDate().isAfter(LocalDate.now()) || newBook.getPublicationDate() == null) {
             throw new IllegalArgumentException("Publication date is missing or is later than today.");
         }
-        if (newBook.getTitle().isBlank() || newBook.getAuthor() == null) {
+        if (isBlank(newBook.getTitle())) {
             throw new IllegalArgumentException("Title is missing or blank.");
         }
 
