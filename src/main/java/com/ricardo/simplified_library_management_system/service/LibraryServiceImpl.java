@@ -56,12 +56,7 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public Book getBookById(Long id) {
-        if (id == null) {
-            throw new IllegalArgumentException("Id is missing.");
-        }
-        if (id < 0) {
-            throw new IllegalArgumentException("Id most be a positive number.");
-        }
+        idValidator(id);
 
         return books.stream()
                 .filter(b -> b.getId().equals(id))
