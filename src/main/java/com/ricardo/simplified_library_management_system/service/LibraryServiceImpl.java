@@ -12,7 +12,7 @@ import com.ricardo.simplified_library_management_system.model.Book;
 
 @Service
 public class LibraryServiceImpl implements LibraryService {
-    // TODO: metodo con validacion de id en lugar de repetir codigo + isBlank() +
+    // TODO: + isBlank() +
     // validar curso ?
     // TODO: javadoc en entidades de software public
     private List<Book> books;
@@ -87,6 +87,10 @@ public class LibraryServiceImpl implements LibraryService {
         if (id < 0) {
             throw new IllegalArgumentException("Id most be a positive number.");
         }
+    }
+
+    private boolean isBlank(String data){
+        return data == null || data.isBlank();
     }
 
 }
