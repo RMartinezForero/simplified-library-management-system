@@ -61,7 +61,9 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public void deleteBookById(Long id) {
-
+        validateId(id);
+        var bookFound = getBookById(id);
+        books.remove(bookFound);
     }
 
     @Override
