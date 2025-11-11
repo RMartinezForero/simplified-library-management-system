@@ -68,7 +68,7 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public List<Book> getBooksWithSubstring(String text) {
+    public List<Book> findBooksByTitleOrAuthorContaining(String text) {
         if (isBlank(text)) {
             throw new IllegalArgumentException("Substring is missing or blank.");
         }

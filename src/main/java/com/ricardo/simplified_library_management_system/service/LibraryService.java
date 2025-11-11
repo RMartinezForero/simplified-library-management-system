@@ -9,5 +9,5 @@ public interface LibraryService {
     Book getBookById(Long id);
     void updateBookData(Long id, Book book);
     void deleteBookById(Long id);
-    List<Book> getBooksWithSubstring(String text);
+    List<Book> findBooksByTitleOrAuthorContaining(String text);
 }
