@@ -12,7 +12,6 @@ import com.ricardo.simplified_library_management_system.model.Book;
 
 @Service
 public class LibraryServiceImpl implements LibraryService {
-    // validar curso ?
     // TODO: javadoc en entidades de software public
     private List<Book> books;
     private AtomicLong idGenerator;
@@ -36,7 +35,7 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public Book getBookById(Long id) {
-        idValidator(id);
+        validateId(id);
 
         return books.stream()
                 .filter(b -> b.getId().equals(id))
@@ -46,7 +45,7 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public void updateBookData(Long id, Book book) {
-
+        
     }
 
     @Override
@@ -60,7 +59,7 @@ public class LibraryServiceImpl implements LibraryService {
         return null;
     }
 
-    private void idValidator(Long id) {
+    private void validateId(Long id) {
         if (id == null) {
             throw new IllegalArgumentException("Id is missing.");
         }
@@ -86,7 +85,7 @@ public class LibraryServiceImpl implements LibraryService {
         if (isBlank(book.getIsbn())) {
             throw new IllegalArgumentException("ISBN data is missing or blank.");
         }
-        if (book.getPublicationDate().isAfter(LocalDate.now()) || newBook.getPublicationDate() == null) {
+        if (book.getPublicationDate().isAfter(LocalDate.now()) || book.getPublicationDate() == null) {
             throw new IllegalArgumentException("Publication date is missing or is later than today.");
         }
         if (isBlank(book.getTitle())) {
