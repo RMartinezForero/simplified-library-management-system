@@ -55,7 +55,7 @@ public class LibraryServiceImpl implements LibraryService {
         bookFound.setId(book.getId());
         bookFound.setIsbn(book.getIsbn());
         bookFound.setPublicationDate(book.getPublicationDate());
-        bookFound.setStatus(null);
+        bookFound.setStatus(book.getStatus());
         bookFound.setTitle(book.getTitle());
     }
 
