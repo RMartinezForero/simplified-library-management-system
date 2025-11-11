@@ -13,6 +13,7 @@ import com.ricardo.simplified_library_management_system.model.BookStatus;
 
 @Service
 public class LibraryServiceImpl implements LibraryService {
+    // TODO: probar app con insomnia
     // TODO: javadoc en entidades de software public
     private List<Book> books;
     private AtomicLong idGenerator;
@@ -68,8 +69,13 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public List<Book> getBooksWithSubstring(String text) {
-        // TODO: validar a text
-        return null;
+        if (isBlank(text)) {
+            throw new IllegalArgumentException("Substring is missing or blank.");
+        }
+
+        return books.stream()
+                .filter(b -> b.getTitle().contains(text) || b.getAuthor().contains(text))
+                .toList();
     }
 
     private void validateId(Long id) {
