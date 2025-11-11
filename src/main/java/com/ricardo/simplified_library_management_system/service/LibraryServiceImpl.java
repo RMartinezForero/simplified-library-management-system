@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ricardo.simplified_library_management_system.excepcion.BookNotFoundException;
 import com.ricardo.simplified_library_management_system.model.Book;
+import com.ricardo.simplified_library_management_system.model.BookStatus;
 
 @Service
 public class LibraryServiceImpl implements LibraryService {
@@ -45,7 +46,17 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public void updateBookData(Long id, Book book) {
-        
+        validateId(id);
+        validateBook(book);
+
+        var bookFound = getBookById(id);
+        bookFound.setAuthor(book.getAuthor());
+        bookFound.setGenre(book.getGenre());
+        bookFound.setId(book.getId());
+        bookFound.setIsbn(book.getIsbn());
+        bookFound.setPublicationDate(book.getPublicationDate());
+        bookFound.setStatus(null);
+        bookFound.setTitle(book.getTitle());
     }
 
     @Override
@@ -91,6 +102,12 @@ public class LibraryServiceImpl implements LibraryService {
         if (isBlank(book.getTitle())) {
             throw new IllegalArgumentException("Title is missing or blank.");
         }
+
+        BookStatus status = book.getStatus();
+        if (status == null || (status != BookStatus.AVAILABLE && status != BookStatus.BORROWED)) {
+            throw new IllegalArgumentException("Book status is missing or invalid.");
+        }
+
     }
 
 }

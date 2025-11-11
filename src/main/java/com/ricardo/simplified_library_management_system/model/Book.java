@@ -11,13 +11,13 @@ public class Book {
     private String genre;
     private BookStatus status;
 
-    public Book(String title, String author, String isbn, LocalDate publicationDate, String genre) {
+    public Book(String title, String author, String isbn, LocalDate publicationDate, String genre, BookStatus status) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
         this.publicationDate = publicationDate;
         this.genre = genre;
-        this.status = BookStatus.AVAILABLE;
+        this.status = status;
     }
 
     public Long getId() {
