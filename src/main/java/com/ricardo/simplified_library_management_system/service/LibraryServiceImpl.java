@@ -24,25 +24,7 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public void addBook(Book newBook) {
-        if (newBook == null) {
-            throw new IllegalArgumentException("The Book object cannot be null.");
-        }
-        if (isBlank(newBook.getAuthor())) {
-            throw new IllegalArgumentException("Author's name is missing or blank.");
-        }
-        if (isBlank(newBook.getGenre())) {
-            throw new IllegalArgumentException("Genra data is missing or blank.");
-        }
-        if (isBlank(newBook.getIsbn())) {
-            throw new IllegalArgumentException("ISBN data is missing or blank.");
-        }
-        if (newBook.getPublicationDate().isAfter(LocalDate.now()) || newBook.getPublicationDate() == null) {
-            throw new IllegalArgumentException("Publication date is missing or is later than today.");
-        }
-        if (isBlank(newBook.getTitle())) {
-            throw new IllegalArgumentException("Title is missing or blank.");
-        }
-
+        validateBook(newBook);
         newBook.setId(idGenerator.getAndIncrement());
         books.add(newBook);
     }
