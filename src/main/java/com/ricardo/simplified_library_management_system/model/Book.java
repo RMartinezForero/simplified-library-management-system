@@ -11,8 +11,7 @@ public class Book {
     private String genre;
     private BookStatus status;
 
-    public Book(Long id, String title, String author, String isbn, LocalDate publicationDate, String genre) {
-        this.id = id;
+    public Book(String title, String author, String isbn, LocalDate publicationDate, String genre) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;

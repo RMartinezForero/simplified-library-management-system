@@ -3,6 +3,7 @@ package com.ricardo.simplified_library_management_system.service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.stereotype.Service;
 
@@ -11,27 +12,28 @@ import com.ricardo.simplified_library_management_system.model.Book;
 
 @Service
 public class LibraryServiceImpl implements LibraryService {
+    // TODO: metodo con validacion de id en lugar de repetir codigo + isBlank() + validar curso ?
     // TODO: AtomicLong para id?
+    // TODO: javadoc en entidades de software public
     private List<Book> books;
+    private AtomicLong idGenerator;
 
     public LibraryServiceImpl() {
         this.books = new ArrayList<>();
+        this.idGenerator = new AtomicLong(1);
     }
 
     @Override
     public void addBook(Book newBook) {
         // TODO: validar correctamente para ID basado en AtomicLong
         if (newBook == null) {
-            throw new IllegalArgumentException("The Book object can´t be null.");
+            throw new IllegalArgumentException("The Book object cannot be null.");
         }
         if (newBook.getAuthor().isBlank() || newBook.getAuthor() == null) {
             throw new IllegalArgumentException("Author's name is missing or blank.");
         }
         if (newBook.getGenre().isBlank() || newBook.getGenre() == null) {
             throw new IllegalArgumentException("Genra data is missing or blank.");
-        }
-        if (newBook.getId() <= 0) {
-            throw new IllegalArgumentException("Id most be positive.");
         }
         if (newBook.getIsbn().isBlank() || newBook.getIsbn() == null) {
             throw new IllegalArgumentException("ISBN data is missing or blank.");
@@ -42,6 +44,8 @@ public class LibraryServiceImpl implements LibraryService {
         if (newBook.getTitle().isBlank() || newBook.getAuthor() == null) {
             throw new IllegalArgumentException("Title is missing or blank.");
         }
+        
+        newBook.setId(idGenerator.getAndIncrement());
         books.add(newBook);
     }
 
