@@ -12,7 +12,6 @@ import com.ricardo.simplified_library_management_system.model.Book;
 
 @Service
 public class LibraryServiceImpl implements LibraryService {
-    // TODO: + isBlank() +
     // validar curso ?
     // TODO: javadoc en entidades de software public
     private List<Book> books;
@@ -88,8 +87,29 @@ public class LibraryServiceImpl implements LibraryService {
         }
     }
 
-    private boolean isBlank(String data){
+    private boolean isBlank(String data) {
         return data == null || data.isBlank();
+    }
+
+    private void validateBook(Book book) {
+        if (book == null) {
+            throw new IllegalArgumentException("The Book object cannot be null.");
+        }
+        if (isBlank(book.getAuthor())) {
+            throw new IllegalArgumentException("Author's name is missing or blank.");
+        }
+        if (isBlank(book.getGenre())) {
+            throw new IllegalArgumentException("Genra data is missing or blank.");
+        }
+        if (isBlank(book.getIsbn())) {
+            throw new IllegalArgumentException("ISBN data is missing or blank.");
+        }
+        if (book.getPublicationDate().isAfter(LocalDate.now()) || newBook.getPublicationDate() == null) {
+            throw new IllegalArgumentException("Publication date is missing or is later than today.");
+        }
+        if (isBlank(book.getTitle())) {
+            throw new IllegalArgumentException("Title is missing or blank.");
+        }
     }
 
 }
