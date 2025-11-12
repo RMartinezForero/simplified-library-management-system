@@ -10,9 +10,9 @@ import com.ricardo.simplified_library_management_system.excepcion.BookNotFoundEx
 import com.ricardo.simplified_library_management_system.model.Book;
 import com.ricardo.simplified_library_management_system.model.BookStatus;
 
+
 @Service
 public class LibraryServiceImpl implements LibraryService {
-    // TODO: probar app con insomnia
     // TODO: javadoc en entidades de software public
     private List<Book> books;
     private AtomicLong idGenerator;
@@ -52,7 +52,6 @@ public class LibraryServiceImpl implements LibraryService {
         var bookFound = getBookById(id);
         bookFound.setAuthor(book.getAuthor());
         bookFound.setGenre(book.getGenre());
-        //bookFound.setId(book.getId());
         bookFound.setIsbn(book.getIsbn());
         bookFound.setPublicationDate(book.getPublicationDate());
         bookFound.setStatus(book.getStatus());
