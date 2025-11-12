@@ -73,7 +73,8 @@ public class LibraryServiceImpl implements LibraryService {
         }
 
         return books.stream()
-                .filter(b -> b.getTitle().contains(text) || b.getAuthor().contains(text))
+                .filter(b -> b.getTitle().toLowerCase().contains(text.toLowerCase()) 
+                || b.getAuthor().toLowerCase().contains(text.toLowerCase()))
                 .toList();
     }
 
