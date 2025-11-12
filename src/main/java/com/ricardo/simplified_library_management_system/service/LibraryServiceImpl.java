@@ -13,7 +13,6 @@ import com.ricardo.simplified_library_management_system.model.BookStatus;
 
 @Service
 public class LibraryServiceImpl implements LibraryService {
-    // TODO: javadoc en entidades de software public
     private List<Book> books;
     private AtomicLong idGenerator;
 
