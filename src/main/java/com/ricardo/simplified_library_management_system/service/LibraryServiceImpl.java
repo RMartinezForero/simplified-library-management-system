@@ -52,7 +52,7 @@ public class LibraryServiceImpl implements LibraryService {
         var bookFound = getBookById(id);
         bookFound.setAuthor(book.getAuthor());
         bookFound.setGenre(book.getGenre());
-        bookFound.setId(book.getId());
+        //bookFound.setId(book.getId());
         bookFound.setIsbn(book.getIsbn());
         bookFound.setPublicationDate(book.getPublicationDate());
         bookFound.setStatus(book.getStatus());
