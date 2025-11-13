@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ricardo.simplified_library_management_system.excepcion.BookNotFoundException;
 import com.ricardo.simplified_library_management_system.model.Book;
 
+import jakarta.validation.Valid;
 
 @Service
 public class LibraryServiceImpl implements LibraryService {
@@ -21,7 +22,6 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public void addBook(Book newBook) {
-        //validateBook(newBook);
         newBook.setId(idGenerator.getAndIncrement());
         books.add(newBook);
     }
@@ -42,9 +42,8 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public void updateBookData(Long id, Book book) {
+    public void updateBookData(Long id, @Valid Book book) {
         validateId(id);
-        //validateBook(book);
 
         var bookFound = getBookById(id);
         bookFound.setAuthor(book.getAuthor());
@@ -83,36 +82,10 @@ public class LibraryServiceImpl implements LibraryService {
         }
     }
 
-    private boolean isBlank(String data) {
-        return data == null || data.isBlank();
+    private boolean isBlank(String text){
+        if(text == null || text.isEmpty()){
+            return true;
+        }
+        return false;
     }
-
-    /*
-    private void validateBook(Book book) {
-        if (book == null) {
-            throw new IllegalArgumentException("The Book object cannot be null.");
-        }
-        if (isBlank(book.getAuthor())) {
-            throw new IllegalArgumentException("Author's name is missing or blank.");
-        }
-        if (isBlank(book.getGenre())) {
-            throw new IllegalArgumentException("Genra data is missing or blank.");
-        }
-        if (isBlank(book.getIsbn())) {
-            throw new IllegalArgumentException("ISBN data is missing or blank.");
-        }
-        if (book.getPublicationDate().isAfter(LocalDate.now()) || book.getPublicationDate() == null) {
-            throw new IllegalArgumentException("Publication date is missing or is later than today.");
-        }
-        if (isBlank(book.getTitle())) {
-            throw new IllegalArgumentException("Title is missing or blank.");
-        }
-
-        BookStatus status = book.getStatus();
-        if (status == null || (status != BookStatus.AVAILABLE && status != BookStatus.BORROWED)) {
-            throw new IllegalArgumentException("Book status is missing or invalid.");
-        }
-
-    }*/
-
 }
