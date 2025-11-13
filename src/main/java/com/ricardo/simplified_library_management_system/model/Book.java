@@ -2,13 +2,29 @@ package com.ricardo.simplified_library_management_system.model;
 
 import java.time.LocalDate;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Class to create books with its default attributes.")
 public class Book {
+    @Schema(description = "Id given automatically")
     private Long id;
+
+    @Schema(description = "book title", example = "Las Voces del Desierto")
     private String title;
+
+    @Schema(description = "The author of the Book", example = "John Doe")
     private String author;
+
+    @Schema(description = "book isbn", example = "12lehej")
     private String isbn;
+
+    @Schema(description = "Date of publication of the new book", example = "2025-11-13")
     private LocalDate publicationDate;
+
+    @Schema(description = "The genre of the new book", example = "Fantasy")
     private String genre;
+
+    @Schema(description = "Determines if the book is BORROWED or AVAILABLE", example = "AVAILABLE")
     private BookStatus status;
 
     public Book(String title, String author, String isbn, LocalDate publicationDate, String genre, BookStatus status) {
