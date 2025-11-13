@@ -42,7 +42,7 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public void updateBookData(Long id, @Valid Book book) {
+    public void updateBookData(Long id, Book book) {
         validateId(id);
 
         var bookFound = getBookById(id);
