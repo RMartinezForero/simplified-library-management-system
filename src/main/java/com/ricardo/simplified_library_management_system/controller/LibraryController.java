@@ -9,6 +9,7 @@ import com.ricardo.simplified_library_management_system.service.LibraryService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -33,7 +34,7 @@ public class LibraryController {
 
     @Operation(summary = "Adds a book", description = "Sends a new Book object to the list of books in the library")
     @PostMapping
-    public void addBook(@RequestBody Book newBook){
+    public void addBook(@RequestBody @Valid Book newBook){
         libraryService.addBook(newBook);
     }
 
@@ -51,7 +52,7 @@ public class LibraryController {
 
     @Operation(summary = "Updates data from one book", description = "Changes the data attributes of a Book object, which contains the specified ID")
     @PutMapping("/{id}")
-    public void updateBookData(@PathVariable Long id, @RequestBody Book book){
+    public void updateBookData(@PathVariable Long id, @RequestBody @Valid Book book){
         libraryService.updateBookData(id, book);
     }
 

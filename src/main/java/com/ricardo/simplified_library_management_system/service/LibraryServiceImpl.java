@@ -1,6 +1,5 @@
 package com.ricardo.simplified_library_management_system.service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.ricardo.simplified_library_management_system.excepcion.BookNotFoundException;
 import com.ricardo.simplified_library_management_system.model.Book;
-import com.ricardo.simplified_library_management_system.model.BookStatus;
 
 
 @Service
@@ -23,7 +21,7 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public void addBook(Book newBook) {
-        validateBook(newBook);
+        //validateBook(newBook);
         newBook.setId(idGenerator.getAndIncrement());
         books.add(newBook);
     }
@@ -46,7 +44,7 @@ public class LibraryServiceImpl implements LibraryService {
     @Override
     public void updateBookData(Long id, Book book) {
         validateId(id);
-        validateBook(book);
+        //validateBook(book);
 
         var bookFound = getBookById(id);
         bookFound.setAuthor(book.getAuthor());
@@ -89,6 +87,7 @@ public class LibraryServiceImpl implements LibraryService {
         return data == null || data.isBlank();
     }
 
+    /*
     private void validateBook(Book book) {
         if (book == null) {
             throw new IllegalArgumentException("The Book object cannot be null.");
@@ -114,6 +113,6 @@ public class LibraryServiceImpl implements LibraryService {
             throw new IllegalArgumentException("Book status is missing or invalid.");
         }
 
-    }
+    }*/
 
 }
